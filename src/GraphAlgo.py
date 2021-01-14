@@ -56,16 +56,16 @@ class GraphAlgo(GraphAlgoInterface):
         if not id2 in distancedict:
             return math.inf, []
         tmp2 = id2
-
+        list.append(id2)
         while tmp2 != id1:
             for i in self.g.all_in_edges_of_node(tmp2):
                 distancedict[i]
-                if (self.g.all_out_edges_of_node(i)[tmp2] + distancedict[i] == distancedict[tmp2]):
+                if self.g.all_out_edges_of_node(i)[tmp2] + distancedict[i] == distancedict[tmp2]:
                     list.append(i)
                     tmp2 = i
                     break
         list.reverse()
-        return (distancedict[id2], list)
+        return distancedict[id2], list
 
     def SCCUtil(self, u):
         next = 0
